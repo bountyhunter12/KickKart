@@ -21,10 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());  // To parse cookies from the request
 const PORT = process.env.PORT || 3000;
 // Connect to the MongoDB database
-mongoose.connect('mongodb+srv://fariha:hellothere@cluster1.5ft0b.mongodb.net/e-commerce?retryWrites=true&w=majority&appName=Cluster1', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect(process.env.connection);
 const db = mongoose.connection;
 db.on('error', () => console.log("Error in Connecting to Database"));
 db.once('open', () => console.log("Connected to Database"));
