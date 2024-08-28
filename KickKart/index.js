@@ -7,11 +7,23 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
 
 dotenv.config();
 
 const app = express();
 const stripeGateway = stripe(process.env.STRIPE_API_KEY);
+
+// Middleware
+app.use(cors(
+    {
+        origin: 'https://kickkart1-ajxlfamzk-faozia-farihas-projects.vercel.app', // Allow only your frontend
+        methods: 'GET,POST,PUT,DELETE', // Specify allowed HTTP methods
+        credentials: true, // Allow credentials (like cookies) to be sent
+
+    }
+));
 
 // Middleware
 app.use(express.static('public'));
